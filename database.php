@@ -12,12 +12,12 @@ if ($conn->connect_error) {
 }
 
 // SQL to create database
-$sql = "CREATE DATABASE Lead_Management_System";
+$sql = "CREATE DATABASE IF NOT EXISTS Lead_Management_System";
 if ($conn->query($sql) === TRUE) {
   echo "Database created successfully";
 } else {
   echo "Error creating database: " . $conn->error;
 }
 
-$conn->close();
+//$conn->close();
 ?>

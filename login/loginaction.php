@@ -1,8 +1,7 @@
 <?php
 session_start();
-include("../database.php");  // Make sure this defines $conn and doesn't close it
+include("../database.php");  
 
-// Check if form data exists
 if (!isset($_POST['username']) || !isset($_POST['password'])) {
     header("Location: login.php");
     exit;
@@ -11,15 +10,14 @@ if (!isset($_POST['username']) || !isset($_POST['password'])) {
 $email = $_POST['username'];
 $password = $_POST['password'];
 
-// Hash password if stored hashed; otherwise use plain (NOT recommended)
-$hashed_password = md5($password);  // Or use password_hash and password_verify
+
+$hashed_password = md5($password);  
 
 // Check connection
 if (!$conn || $conn->connect_error) {
     die("Database connection failed: " . $conn->connect_error);
 }
 
-// Prepare and execute query safely
 $sql = "SELECT * FROM users WHERE email = ? AND password = ?";
 $stmt = $conn->prepare($sql);
 if (!$stmt) {
@@ -34,6 +32,7 @@ if ($result && $result->num_rows === 1) {
     $_SESSION['user_id'] = $user['id'];
     $_SESSION['role'] = $user['role'];
     $_SESSION['email'] = $user['email'];
+
     header("Location: dashboard.php");
     exit;
 } else {

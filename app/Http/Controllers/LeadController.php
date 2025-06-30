@@ -50,7 +50,7 @@ class LeadController extends Controller
         'status' => 'new',
         'assigned_to' => null
     ]);
-    return redirect()->route('leads.create')->with('success', 'Lead added successfully!');
+return redirect()->route('leads.index')->with('success', 'Lead added successfully!');
     
     }
 
@@ -88,7 +88,7 @@ class LeadController extends Controller
     {
         $lead = Lead::findOrFail($id);
 
-    $request->validate([
+        $request->validate([
         'name' => 'required',
         'email' => 'required|email',
         'phone' => 'required',
@@ -102,6 +102,7 @@ class LeadController extends Controller
         'email' => $request->email,
         'phone' => $request->phone,
         'source' => $request->source,
+        'status' => $request->status,
     ]);
 
     return redirect()->route('leads.index')->with('success', 'Lead updated successfully!');
@@ -118,4 +119,22 @@ class LeadController extends Controller
         Lead::findOrFail($id)->delete();
     return redirect()->route('leads.index')->with('success', 'Lead deleted successfully!');
     }
+
+    /**
+ * Display lead reports.
+ */
+public function reports()
+{
+    $totalLeads = Lead::count();
+    $convertedLeads = Lead::where('status', 'converted')->count();
+    $newLeads = Lead::where('status', 'new')->count();
+
+    // Group by source
+    $leadsBySource = Lead::select('source', \DB::raw('count(*) as total'))
+                         ->groupBy('source')
+                         ->get();
+
+    return view('reports', compact('totalLeads', 'convertedLeads', 'newLeads', 'leadsBySource'));
+}
+
 }

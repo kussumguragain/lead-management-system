@@ -21,7 +21,15 @@
 
     <div class="bg-white shadow rounded-lg p-6">
         <h2 class="text-xl font-semibold mb-4">Lead Conversion Rate</h2>
-        <canvas id="conversionChart" height="120"></canvas>
+
+        <div class="my-4 text-center text-lg">
+            @php
+                $conversionRate = $totalLeads > 0 ? round(($convertedLeads / $totalLeads) * 100, 2) : 0;
+            @endphp
+            <strong>Conversion Rate:</strong> {{ $conversionRate }}%
+        </div>
+
+        <canvas id="conversionChart" width="300" height="300" style="display: block; margin: 0 auto;"></canvas>
     </div>
 
     <div class="bg-white shadow rounded-lg p-6 mt-8">

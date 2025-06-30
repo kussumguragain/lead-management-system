@@ -129,12 +129,15 @@ public function reports()
     $convertedLeads = Lead::where('status', 'converted')->count();
     $newLeads = Lead::where('status', 'new')->count();
 
+    $conversionRate = $totalLeads > 0 ? round(($convertedLeads / $totalLeads) * 100, 2) : 0;
+
     // Group by source
     $leadsBySource = Lead::select('source', \DB::raw('count(*) as total'))
                          ->groupBy('source')
                          ->get();
 
-    return view('reports', compact('totalLeads', 'convertedLeads', 'newLeads', 'leadsBySource'));
+    return view('reports', compact('totalLeads', 'convertedLeads', 'newLeads', 'leadsBySource', 'conversionRate'));
 }
+
 
 }

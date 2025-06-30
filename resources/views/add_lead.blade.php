@@ -22,10 +22,24 @@
             <input type="text" name="phone" class="form-control" required>
         </div>
 
-        <div class="mb-3">
-            <label>Source:</label>
-            <input type="text" name="source" class="form-control" required>
-        </div>
+    <div class="mb-3">
+        <label for="source" class="form-label">Source:</label>
+        <select name="source" class="form-select" required>
+        <option value="">Select source</option>
+        <option value="Facebook">Facebook</option>
+        <option value="Google Ads">Google Ads</option>
+        <option value="Instagram">Instagram</option>
+        <option value="LinkedIn">LinkedIn</option>
+        <option value="Website">Website</option>
+        <option value="Referral">Referral</option>
+        <option value="Email Campaign">Email Campaign</option>
+        <option value="Phone Call">Phone Call</option>
+        <option value="Event / Trade Show">Event / Trade Show</option>
+        <option value="Walk-in">Walk-in</option>
+        <option value="Other">Other</option>
+    </select>
+</div>
+
 
         <button type="submit" class="btn btn-primary">Add Lead</button>
     </form>

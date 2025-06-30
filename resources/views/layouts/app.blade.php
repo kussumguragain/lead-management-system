@@ -6,23 +6,41 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body class="flex bg-gray-100 min-h-screen">
+<body class="d-flex bg-gray-100 min-vh-100">
 
     <!-- Sidebar -->
-    <aside class="w-64 bg-gray-900 text-white min-h-screen p-4">
-        <h2 class="text-xl font-bold mb-4">LMS Panel</h2>
-        <ul class="space-y-3">
-            <li><a href="{{ route('dashboard') }}" class="hover:underline">Dashboard</a></li>
-            <li><a href="{{ route('leads.index') }}" class="hover:underline">Leads</a></li>
-            <li><a href="{{ route('reports') }}" class="hover:underline">Reports</a></li>
-            <li><a href="#" class="hover:underline">Assign Leads</a></li>
+    <nav class="d-flex flex-column flex-shrink-0 p-3 bg-dark text-white" style="width: 250px; min-height: 100vh;">
+        <h2 class="fs-4 mb-4">LMS Panel</h2>
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item">
+                <a href="{{ route('dashboard') }}" class="nav-link text-white">
+                    Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('leads.index') }}" class="nav-link text-white">
+                    Leads
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('reports') }}" class="nav-link text-white">
+                    Reports
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link text-white">
+                    Assign Leads
+                </a>
+            </li>
         </ul>
-    </aside>
+    </nav>
 
     <!-- Main Content -->
-    <main class="flex-1 p-6">
-        @yield('content')
+    <main class="flex-grow-1 p-6">
+        @yield('content')  <!-- This is where your page content will appear -->
     </main>
+
+    @yield('scripts')  <!-- This is where page-specific scripts will be inserted -->
 
 </body>
 </html>

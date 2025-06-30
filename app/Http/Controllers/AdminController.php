@@ -6,11 +6,11 @@ use App\Models\Lead;
 
 class AdminController extends Controller
 {
-    public function dashboard()
+   public function dashboard()
 {
-    $totalLeads = \App\Models\Lead::count();
-    $convertedLeads = \App\Models\Lead::where('status', 'converted')->count();
-    $newLeads = \App\Models\Lead::where('status', 'new')->count();
+    $totalLeads = Lead::count();
+    $convertedLeads = Lead::where('status', 'converted')->count();
+    $newLeads = Lead::where('status', 'new')->count();
 
     return view('dashboard', compact('totalLeads', 'convertedLeads', 'newLeads'));
 }

@@ -2,11 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
-<<<<<<< Updated upstream
-=======
 use App\Http\Controllers\LeadController;
 use App\Http\Controllers\ReportController;
->>>>>>> Stashed changes
+
 use Illuminate\Support\Facades\Route;
 
 /*

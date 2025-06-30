@@ -40,8 +40,6 @@ Route::middleware(['auth', 'verified', 'is_admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 });
 
-<<<<<<< Updated upstream
-=======
 Route::middleware(['auth', 'is_admin'])->group(function () {
     Route::get('/leads/create', [LeadController::class, 'create'])->name('leads.create');
     Route::post('/leads', [LeadController::class, 'store'])->name('leads.store');
@@ -56,6 +54,3 @@ Route::middleware(['auth', 'is_admin'])->group(function () {
     Route::get('/reports', [ReportController::class, 'index'])->name('reports');
 });
 
-
-
->>>>>>> Stashed changes
